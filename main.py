@@ -2,7 +2,7 @@ import os
 import sys
 from dotenv import load_dotenv
 from google import genai
-
+from google.genai import types
 
 
 
@@ -20,9 +20,16 @@ def main():
     api_key = os.environ.get("GEMINI_API_KEY")
     client = genai.Client(api_key=api_key)
 
+    ###
+
+    messages = [
+        types.Content(role="user", parts=[types.Part(text=user_prompt)]) ##We store user's prompts for tracking conversation history and answer the question in convension.
+    ]
+
+
     response = client.models.generate_content(
         model="gemini-2.0-flash-001",
-        contents=user_prompt
+        contents=messages
     )
     
     text = response._get_text()
