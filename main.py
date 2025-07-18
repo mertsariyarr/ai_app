@@ -34,10 +34,18 @@ def main():
     
     text = response._get_text()
 
-    print(text)
-    print(f"Prompt tokens: {response.usage_metadata.prompt_token_count}")
-    print(f"Response tokens: {response.usage_metadata.candidates_token_count}")
 
+    
+
+    print(text)
+    # print(f"Prompt tokens: {response.usage_metadata.prompt_token_count}")
+    # print(f"Response tokens: {response.usage_metadata.candidates_token_count}")
+
+    if "--verbose" in args:
+        print(f"User prompt: {user_prompt}")
+        print(f"Prompt tokens: {response.usage_metadata.prompt_token_count}")
+        print(f"Response tokens: {response.usage_metadata.candidates_token_count}")
+  
 
 
 if __name__ == "__main__":
