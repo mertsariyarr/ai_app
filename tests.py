@@ -1,5 +1,6 @@
 from functions.get_files_info import get_files_info
 from functions.get_file_content import get_file_content
+from functions.write_file import write_file
 
 def test():
     # result1 = get_files_info("calculator", ".")
@@ -15,13 +16,18 @@ def test():
     # print("Results for '../' directory:")
     # print(result4)
     ####
-    result = get_file_content("calculator", "lorem.txt")
-    resul1 = get_file_content("calculator", "main.py")
-    result2 = get_file_content("calculator", "pkg/calculator.py")
-    result3 = get_file_content("calculator", "/bin/cat")
-    result4 = get_file_content("calculator", "pkg/does_not_exist.py")
+    # result = get_file_content("calculator", "lorem.txt")
+    # resul1 = get_file_content("calculator", "main.py")
+    # result2 = get_file_content("calculator", "pkg/calculator.py")
+    # result3 = get_file_content("calculator", "/bin/cat")
+    # result4 = get_file_content("calculator", "pkg/does_not_exist.py")
 
-    print(result, resul1, result2, result3,result4)
+    # print(result, resul1, result2, result3,result4)
 
+    result = write_file("calculator", "lorem.txt", "wait, this isn't lorem ipsum")
+    result2 = write_file("calculator", "pkg/morelorem.txt", "lorem ipsum dolor sit amet")
+    result3 = write_file("calculator", "/tmp/temp.txt", "this should not be allowed")
+
+    print(result, result2, result3)
 if __name__ == "__main__":
     test()
