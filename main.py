@@ -7,6 +7,7 @@ from functions.get_files_info import schema_get_files_info
 from functions.get_file_content import schema_get_files_content
 from functions.write_file import schema_write_file
 from functions.run_python import schema_run_python_file
+from prompts import system_prompt
 
 
 
@@ -21,15 +22,7 @@ def main():
         
 
     user_prompt = " ".join(args)
-    system_prompt = """
-You are a helpful AI coding agent.
 
-When a user asks a question or makes a request, make a function call plan. You can perform the following operations:
-
-- List files and directories
-
-All paths you provide should be relative to the working directory. You do not need to specify the working directory in your function calls as it is automatically injected for security reasons.
-"""
 
     api_key = os.environ.get("GEMINI_API_KEY")
     client = genai.Client(api_key=api_key)
