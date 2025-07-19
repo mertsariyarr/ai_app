@@ -1,5 +1,7 @@
 import os
 from config import MAX_CHARS
+from google.genai import types
+
 
 def get_file_content(working_directory, file_path):
     abs_path = os.path.abspath(working_directory)
@@ -20,3 +22,17 @@ def get_file_content(working_directory, file_path):
         return f"Error: Cannot convert txt {file_path} as {e}"
 
     
+schema_get_files_content = types.FunctionDeclaration( ## schema for the get file content
+    name="get_file_content",
+    description="Read and returns the specific file's content",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file_path": types.Schema(
+                type=types.Type.STRING,
+                description="The path to the file to read and return.",
+            ),
+        },
+        required=["file_path"]
+    ),
+)
